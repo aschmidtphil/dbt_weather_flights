@@ -19,8 +19,8 @@ add_more_features AS (
     SELECT *
 		,(CASE 
 			WHEN time BETWEEN '00:00:00' AND '05:59:59' THEN 'night'
-			WHEN '06:00:00' THEN '17:59:59' THEN 'day'
-			WHEN '18:00:00' THEN '23:59:59' THEN 'evening'
+			WHEN time BETWEEN '06:00:00' AND '17:59:59' THEN 'day'
+			WHEN time BETWEEN '18:00:00' AND '23:59:59' THEN 'evening'
 		END) AS day_part
     FROM add_features
 )
