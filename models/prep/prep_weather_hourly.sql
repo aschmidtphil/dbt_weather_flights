@@ -24,6 +24,5 @@ add_more_features AS (
 		END) AS day_part
     FROM add_features
 )
-
 SELECT *
 FROM add_more_features
