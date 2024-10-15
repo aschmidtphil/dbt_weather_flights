@@ -19,8 +19,7 @@ WITH routes AS
 ), 
 locations AS
 (	SELECT
-        route,
-		origin,
+       	origin,
 		dest,
 		tail_number,
 		airline,
@@ -40,10 +39,10 @@ locations AS
 	LEFT JOIN {{ref('prep_airports')}} AS dest_airport        -- Alias for the destination airport
     ON dest_airport.faa = prep_flights.dest
 	)
-SELECT 	--flight_date,
+SELECT 	route,
+        --flight_date,
         --dep_time,
-		routes.route,
-        locations.origin,
+		locations.origin,
 		origin_city,
 		origin_country,
 		origin_name,
@@ -65,6 +64,7 @@ JOIN routes
 ON locations.origin = routes.origin
 AND locations.dest = routes.dest
 GROUP BY 
+    routes.route,
     routes.origin,
     locations.origin,
     locations.dest,
