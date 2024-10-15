@@ -1,5 +1,6 @@
 WITH routes AS 
 (	SELECT 
+        CONCAT(origin, ' - ', dest) AS Route,
         origin,                       
         dest, 
       --  flight_date,
@@ -18,6 +19,7 @@ WITH routes AS
 ), 
 locations AS
 (	SELECT
+        route,
 		origin,
 		dest,
 		tail_number,
@@ -40,7 +42,8 @@ locations AS
 	)
 SELECT 	--flight_date,
         --dep_time,
-		locations.origin,
+		routes.route,
+        locations.origin,
 		origin_city,
 		origin_country,
 		origin_name,
@@ -81,4 +84,4 @@ GROUP BY
     routes.min_delay,                    
     routes.total_cancelled,              
     routes.total_diverted
-ORDER BY routes.origin, routes.dest
+ORDER BY total_flights desc
