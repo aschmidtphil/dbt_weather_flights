@@ -61,4 +61,24 @@ FROM locations
 JOIN routes
 ON locations.origin = routes.origin
 AND locations.dest = routes.dest
+GROUP BY 
+    routes.origin,
+    locations.origin,
+    locations.dest,
+    locations.origin_city,
+    locations.origin_country,
+    locations.origin_name,
+    routes.dest,
+    locations.dest_city,
+    locations.dest_country,
+    locations.dest_name,
+    routes.total_flights,    
+    routes.unique_airplanes, 
+    routes.unique_airlines,      
+    routes.avg_elapsed_time,    
+    routes.avg_arrival_delay,             
+    routes.max_delay,                     
+    routes.min_delay,                    
+    routes.total_cancelled,              
+    routes.total_diverted
 ORDER BY routes.origin, routes.dest
