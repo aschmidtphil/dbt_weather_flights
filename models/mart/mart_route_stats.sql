@@ -35,7 +35,7 @@ locations AS
 	FROM {{ref('prep_flights')}}
 	LEFT JOIN {{ref('prep_airports')}} AS origin_airport      -- Alias for the origin airport
     ON origin_airport.faa = prep_flights.origin
-	LEFT JOIN {{ref('prep_flights')}} AS dest_airport        -- Alias for the destination airport
+	LEFT JOIN {{ref('prep_airports')}} AS dest_airport        -- Alias for the destination airport
     ON dest_airport.faa = prep_flights.dest
 	)
 SELECT 	--flight_date,
