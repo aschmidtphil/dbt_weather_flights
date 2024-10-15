@@ -1,6 +1,6 @@
 WITH daily_data AS (
     SELECT * 
-    FROM {{ref('staging_weather_daily')}}
+    FROM staging_weather_daily
 ),
 add_features AS (
     SELECT *
@@ -15,10 +15,10 @@ add_features AS (
 add_more_features AS (
     SELECT *
 		, (CASE 
-			WHEN month_name IN ('Dezember, January, February') THEN 'winter'
-			WHEN month_name IN ('March','April','May') THEN 'spring'
-            WHEN month_name IN ('June', 'July', 'August') THEN 'summer'
-            WHEN month_name IN ('September', 'October', 'November') THEN 'autumn'
+			WHEN TRIM(month_name) IN ('December', 'January', 'February') THEN 'winter'
+			WHEN TRIM(month_name) IN ('March', 'April', 'May') THEN 'spring'
+            WHEN TRIM(month_name) IN ('June', 'July', 'August') THEN 'summer'
+            WHEN TRIM(month_name) IN ('September', 'October', 'November') THEN 'autumn'
 		END) AS season
     FROM add_features
 )
