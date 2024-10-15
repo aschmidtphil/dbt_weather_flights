@@ -53,7 +53,7 @@ SELECT city
 		,country
 		,name
 		,total_stats.*
-FROM prep_airports
+FROM {{ref('prep_airports')}}
 RIGHT JOIN total_stats
 USING (faa)
 ORDER BY city
